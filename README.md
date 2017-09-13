@@ -1,2 +1,2 @@
 ## Where PickleRi6 at?
-We'll, we didn't like working with Mee6's code and being a "fork". So we decided to recode PickleRi6. You can still use the old version but you won't get any support. If you want to use the unstable development builds, they're in the development folder. <3
+Well, we didn't like working with Mee6's code and being a "fork". So we decided to recode PickleRi6. You can still use the old version but you won't get any support. If you want to use the unstable development builds, they're in the development folder!
