@@ -9,11 +9,8 @@ Bot.DBM = null;
 
 const DiscordJS = require('discord.js');
 
-Bot.$cmds = {}; // Normal commands
-Bot.$icds = []; // Includes word commands
-Bot.$regx = []; // Regular Expression commands
-Bot.$anym = []; // Any message commands
-Bot.$evts = {}; // Events
+Bot.$cmds = {};
+Bot.$evts = {};
 
 Bot.bot = null;
 
@@ -36,27 +33,13 @@ Bot.reformatData = function() {
 Bot.reformatCommands = function() {
 	const data = this.DBM.Files.data.commands;
 	if(!data) return;
-	this._caseSensitive = Boolean(this.DBM.Files.data.settings.case === 'false');
 	for(let i = 0; i < data.length; i++) {
 		const com = data[i];
 		if(com) {
-			switch(com.comType) {
-				case '1':
-					this.$icds.push(com);
-					break;
-				case '2':
-					this.$regx.push(com);
-					break;
-				case '3':
-					this.$anym.push(com);
-					break;
-				default:
-					if(this._caseSensitive) {
-						this.$cmds[com.name] = com;
-					} else {
-						this.$cmds[com.name.toLowerCase()] = com;
-					}
-					break;
+			if(this.DBM.Files.data.settings.case === 'false') {
+				this.$cmds[com.name.toLowerCase()] = com;
+			} else {
+				this.$cmds[com.name] = com;
 			}
 		}
 	}
@@ -116,7 +99,7 @@ Bot.onMessage = function(msg) {
 Bot.checkCommand = function(msg) {
 	let command = this.checkTag(msg.content);
 	if(command) {
-		if(!this._caseSensitive) {
+		if(this.DBM.Files.data.settings.case === 'false') {
 			command = command.toLowerCase();
 		}
 		const cmd = this.$cmds[command];
@@ -139,43 +122,9 @@ Bot.checkTag = function(content) {
 };
 
 Bot.onAnyMessage = function(msg) {
-	this.checkIncludes(msg);
-	this.checkRegExps(msg);
 	if(!msg.author.bot) {
 		if(this.$evts["2"]) {
 			this.DBM.Events.callEvents("2", 1, 0, 2, false, '', msg);
-		}
-		const anym = this.$anym;
-		for(let i = 0; i < anym.length; i++) {
-			if(anym[i]) {
-				this.DBM.Actions.preformActions(msg, anym[i]);
-			}
-		}
-	}
-};
-
-Bot.checkIncludes = function(msg) {
-	const text = msg.content;
-	if(!text) return;
-	const icds = this.$icds;
-	for(let i = 0; i < icds.length; i++) {
-		if(icds[i] && icds[i].name) {
-			if(text.match(new RegExp('\\b' + icds[i].name + '\\b', 'i'))) {
-				this.DBM.Actions.preformActions(msg, icds[i]);
-			}
-		}
-	}
-};
-
-Bot.checkRegExps = function(msg) {
-	const text = msg.content;
-	if(!text) return;
-	const regx = this.$regx;
-	for(let i = 0; i < regx.length; i++) {
-		if(regx[i] && regx[i].name) {
-			if(text.match(new RegExp(regx[i].name, 'i'))) {
-				this.DBM.Actions.preformActions(msg, regx[i]);
-			}
 		}
 	}
 };

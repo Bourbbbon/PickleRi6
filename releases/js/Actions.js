@@ -379,46 +379,7 @@ Actions.getChannel = function(type, varName, cache) {
 			break;
 		case 2:
 			if(server) {
-				return server.getDefaultChannel();
-			}
-			break;
-		case 3:
-			return cache.temp[varName];
-			break;
-		case 4:
-			if(server && this.server[server.id]) {
-				return this.server[server.id][varName];
-			}
-			break;
-		case 5:
-			return this.global[varName];
-			break;
-		default: 
-			break;
-	}
-	return false;
-};
-
-Actions.getVoiceChannel = function(type, varName, cache) {
-	const msg = cache.msg;
-	const server = cache.server;
-	switch(type) {
-		case 0:
-			if(msg && msg.member) {
-				return msg.member.voiceChannel;
-			}
-			break;
-		case 1:
-			if(msg && msg.mentions) {
-				const member = msg.mentions.members.first();
-				if(member) {
-					return member.voiceChannel;
-				}
-			}
-			break;
-		case 2:
-			if(server) {
-				return server.getDefaultVoiceChannel();
+				return server.channels.first();
 			}
 			break;
 		case 3:

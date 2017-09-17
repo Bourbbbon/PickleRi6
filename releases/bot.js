@@ -1,4 +1,4 @@
-//* Please don't touch this, it'll break me!
+// No need to edit this! It'll break the bot!
 
 const Files = require(require('path').join(__dirname, 'js', 'Main.js')).Files;
 

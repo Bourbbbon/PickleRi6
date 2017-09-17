@@ -73,30 +73,8 @@ const Guild = DiscordJS.Guild;
 Guild.prototype.getDefaultChannel = function() {
 	let channel = this.channels.get(this.id);
 	if(!channel) {
-		this.channels.array().forEach(function(c) {
-			if(c.type !== 'voice') {
-				if(!channel) {
-					channel = c;
-				} else if(channel.position > c.position) {
-					channel = c;
-				}
-			}
-		});
+		channel = this.channels.first();
 	}
-	return channel;
-};
-
-Guild.prototype.getDefaultVoiceChannel = function() {
-	let channel = null;
-	this.channels.array().forEach(function(c) {
-		if(c.type === 'voice') {
-			if(!channel) {
-				channel = c;
-			} else if(channel.position > c.position) {
-				channel = c;
-			}
-		}
-	});
 	return channel;
 };
 

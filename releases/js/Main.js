@@ -5,9 +5,8 @@ const DBM = {
 	Events: 	require('./Events.js'),
 	Actions: 	require('./Actions.js'),
 	Images: 	require('./Images.js'),
-	Audio:  	require('./Audio.js'),
 	Files: 		require('./Files.js'),
 	Overwrites: require('./Overwrites.js')
 };
 
-module.exports = DBM.Bot.DBM = DBM.Events.DBM = DBM.Actions.DBM = DBM.Images.DBM = DBM.Files.DBM = DBM.Audio.DBM = DBM.Overwrites.DBM = DBM;
+module.exports = DBM.Bot.DBM = DBM.Events.DBM = DBM.Actions.DBM = DBM.Images.DBM = DBM.Files.DBM = DBM.Overwrites.DBM = DBM;
