@@ -1,2 +1,2 @@
 ## Where is PickleRi6 at?
-Well, we didn't like working with Mee6's code and being a "fork". So we decided to recode PickleRi6. You can still use the old version but you won't get any support. If you want to use the unstable development builds, they're in the development folder!
+📣 Yes! First beta release! 👏 We're no longer a fork of Mee6 but our own thing! Just click on releases, then add bot to my server.
