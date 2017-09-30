@@ -23,7 +23,7 @@
 			{
 				"channel": "0",
 				"varName": "",
-				"message": "You don't have the Manage Messages permission, so I'm not going to let you use this command.",
+				"message": "Sorry! I don't want to let you do this command due to the server administrators not wanting to give you the Manage Messages permission.",
 				"storage": "1",
 				"varName2": "sorry",
 				"name": "Send Message"
@@ -104,7 +104,7 @@
 			{
 				"channel": "0",
 				"varName": "",
-				"message": "Ooh! You want me to visit a certain dimension? Ok, just enter it into my portal gun. <insert bot invite here bourbbbon>",
+				"message": "One sec, lemme load up my portal gun. Ok, what's the dimension?",
 				"storage": "0",
 				"varName2": "",
 				"name": "Send Message"
@@ -269,6 +269,98 @@
 		]
 	},
 	{
+		"name": "mute",
+		"permissions": "BAN_MEMBERS",
+		"restriction": "1",
+		"actions": [
+			{
+				"member": "0",
+				"varName": "",
+				"info": "11",
+				"storage": "1",
+				"varName2": "muted",
+				"name": "Store Member Info"
+			},
+			{
+				"storage": "1",
+				"varName": "muted",
+				"comparison": "1",
+				"value": "1",
+				"iftrue": "2",
+				"iftrueVal": "5",
+				"iffalse": "2",
+				"iffalseVal": "5",
+				"name": "Check Variable"
+			},
+			{
+				"channel": "0",
+				"varName": "",
+				"message": "${mentionedUser} is already muted. You can use !unmute to unmute them.",
+				"storage": "0",
+				"varName2": "",
+				"name": "Send Message"
+			},
+			{
+				"name": "End Action Sequence"
+			},
+			{
+				"info": "1",
+				"infoIndex": "2",
+				"storage": "1",
+				"varName": "reason",
+				"name": "Store Command Params"
+			},
+			{
+				"server": "0",
+				"varName": "",
+				"info": "2",
+				"storage": "1",
+				"varName2": "serverName",
+				"name": "Store Server Info"
+			},
+			{
+				"title": "You've muted in the ${tempVars(\"serverName\")} server.",
+				"author": "",
+				"color": "",
+				"timestamp": "false",
+				"url": "",
+				"authorIcon": "",
+				"imageUrl": "",
+				"thumbUrl": "http://i.imgur.com/6c8nq8C.png",
+				"storage": "1",
+				"varName": "muteEmbed",
+				"name": "Create Embed Message"
+			},
+			{
+				"storage": "1",
+				"varName": "muteEmbed",
+				"message": "You've been muted because: ${tempVars(\"reason\")}.",
+				"name": "Set Embed Description"
+			},
+			{
+				"storage": "1",
+				"varName": "muteEmbed",
+				"channel": "2",
+				"varName2": "",
+				"name": "Send Embed Message"
+			},
+			{
+				"member": "0",
+				"varName": "",
+				"mute": "0",
+				"name": "Set Member Mute"
+			},
+			{
+				"storage": "1",
+				"varName": "banEmbed",
+				"fieldName": "TEST1",
+				"message": "TESTDESC",
+				"inline": "0",
+				"name": "Add Embed Field"
+			}
+		]
+	},
+	{
 		"name": "ping",
 		"permissions": "NONE",
 		"restriction": "1",
@@ -322,12 +414,6 @@
 				"name": "Send Embed Message"
 			}
 		]
-	},
-	{
-		"name": "mute",
-		"permissions": "NONE",
-		"restriction": "1",
-		"actions": []
 	},
 	{
 		"name": "play",
