@@ -23,7 +23,7 @@
 			{
 				"channel": "0",
 				"varName": "",
-				"message": "Sorry! I don't want to let you do this command due to the server administrators not wanting to give you the Manage Messages permission.",
+				"message": "You don't have the Manage Messages permission, so I'm not going to let you use this command.",
 				"storage": "1",
 				"varName2": "sorry",
 				"name": "Send Message"
@@ -104,7 +104,7 @@
 			{
 				"channel": "0",
 				"varName": "",
-				"message": "Ooh! You want to visit my home dimention? It's C-ASPHALT.\nhttps://discord.gg/nZP7Yss",
+				"message": "Ooh! You want me to visit a certain dimension? Ok, just enter it into my portal gun. <insert bot invite here bourbbbon>",
 				"storage": "0",
 				"varName2": "",
 				"name": "Send Message"
